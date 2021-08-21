@@ -1,17 +1,9 @@
 import React from 'react';
 import {render, screen, fireEvent } from '@testing-library/react';
-import Todo from '../components/Todo';
+import Todo from './Todo';
 
 describe('Tests for Todo component', () => {
   it('Should add new task when form has  been  submitted', () => {
-      //renderizar o componente 
-      // buscar input
-      // digitar no input
-      // buscar o botão
-      // clicar no botão
-      // buscar tabela
-      // verificar se a tarefa foi adicionada na tabela
-    
       const { container } = render(<Todo />);
       const input = container.querySelector('[data-testid="input-task"]');
       fireEvent.change(input, {target: {value: 'testing'}})
