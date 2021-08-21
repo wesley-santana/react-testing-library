@@ -31,6 +31,7 @@ describe('Tests for Todo component', () => {
     fireEvent.change(input, {target: {value: 'ler um livro'}})
     fireEvent.click(btnAdd);
     fireEvent.click(btnClear);
-    screen.getByText('tomar água');
+    expect(screen.queryByText('tomar água')).toEqual(null);
+    expect(screen.queryByText('ler um livro')).toEqual(null)
   })
 })

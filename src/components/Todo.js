@@ -21,7 +21,7 @@ const Todo = () => {
   return (
     <>
       <form onSubmit={handleFormSubmit}>
-        <input class='form-control' data-testid="input-task" placeholder="new task" value={task} onChange={handleClickAdd}/>
+        <input className='form-control' data-testid="input-task" placeholder="new task" value={task} onChange={handleClickAdd}/>
         <button data-testid="add" id="add" type="subimit">Add</button>
         <button  data-testid="clear" type="button" onClick={handleClickClear}>Clear</button>
       </form>
@@ -34,7 +34,7 @@ const Todo = () => {
         <tbody>
           {taskList.map((currentTask, index) =>(
             <tr key={index}>
-              <td>{currentTask}</td>
+              <td data-testid="row">{currentTask}</td>
             </tr>  
           ))}
           
