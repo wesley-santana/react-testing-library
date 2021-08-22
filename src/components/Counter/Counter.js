@@ -1,4 +1,4 @@
-import Reat, { useState } from 'react';
+import React, { useState } from 'react';
 import './Counter.css';
 
 const Counter = () => {
@@ -8,11 +8,11 @@ const Counter = () => {
     <>
       <h1>{counter}</h1>
       <div>
-        <button className="Button">
-            +
+        <button onClick={() => setCounter(counter - 1)} className="Button">
+          -
         </button>
-        <button className="Button">
-            -
+        <button onClick={() => setCounter(counter + 1)} className="Button">
+          +
         </button>
       </div>
     </>
