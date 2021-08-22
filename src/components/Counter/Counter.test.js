@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Counter from "./Counter";
 
 describe( 'Counter  Component', () => {
@@ -19,5 +19,51 @@ describe( 'Counter  Component', () => {
     const counterTitle = screen.getByText('0');
     expect(counterTitle).not.toHaveClass('Counter--success');
     expect(counterTitle).not.toHaveClass('Counter--danger');
+  });
+
+  it('must contain an increment button', () =>{
+    render(<Counter />);
+    const btnIncrement = screen.getByRole('button', {name: '+'});
+    expect(btnIncrement).toHaveClass('Button');
+    expect(btnIncrement).toHaveClass('Button--success');
+  });
+
+  it('must contain an decrement button', () =>{
+    render(<Counter />);
+    const btnIncrement = screen.getByRole('button', {name: '-'});
+    expect(btnIncrement).toHaveClass('Button');
+    expect(btnIncrement).toHaveClass('Button--danger');
+  });
+
+  it('click increment', () =>{
+    render(<Counter />);
+    const btnIncrement = screen.getByRole('button', {name: '+'});
+    expect(screen.queryByText('1')).toBeNull();
+    fireEvent.click(btnIncrement);
+    expect(screen.getByText('1')).toBeInTheDocument();
+  });
+
+  it('click decrement', () =>{
+    render(<Counter />);
+    const btnDecrement = screen.getByRole('button', {name: '-'});
+    expect(screen.queryByText('-1')).toBeNull();
+    fireEvent.click(btnDecrement);
+    expect(screen.getByText('-1')).toBeInTheDocument();
+  });
+
+  it('click increment add class Counter--success', () =>{
+    render(<Counter />);
+    const btnIncrement = screen.getByRole('button', {name: '+'});
+    expect(screen.getByText('0')).not.toHaveClass('Counter--success');
+    fireEvent.click(btnIncrement);
+    expect(screen.getByText('1')).toHaveClass('Counter--success');
+  });
+
+  it('click decrement add class Counter--danger', () =>{
+    render(<Counter />);
+    const btnIncrement = screen.getByRole('button', {name: '-'});
+    expect(screen.getByText('0')).not.toHaveClass('Counter--danger');
+    fireEvent.click(btnIncrement);
+    expect(screen.getByText('-1')).toHaveClass('Counter--danger');
   });
 })
